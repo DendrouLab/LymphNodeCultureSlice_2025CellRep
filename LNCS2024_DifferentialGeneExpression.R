@@ -34,7 +34,7 @@ slice_ctrl$sample_id <- droplevels(slice_ctrl$sample_id)
 
 # Excluding T, B and plasma cells prior to DA analysis
 whole_da <- whole[,whole$celltypes %in% c("CD16hi_NK", "CD16low_NK", "DC","Endothelial","SELL+ID2hi_ILC","Mast_cells","Monocyte_Macrophages", "ILC3", "HLADRhi_ILC3", "Neutrophil_Granulocytes","Proliferating_cells","Stromal","pDC")]
-slice_da <- slice_ctrl[,slice_ctrl$celltypes %in% c("CD25+IL22+_ILC3", "CD16hi_NK", "CD16low_NK", "DC", "Endothelial", "HSPhi_ILC", "SELL+ID2hi_ILC", "Mast_cells", "Monocyte_Macrophages", "ILC3", "HLADRhi_ILC3", "CD25+CXCL8+_ILC", "Proliferating_cells", "Stromal", "pDC")]
+slice_da <- slice_ctrl[,slice_ctrl$celltypes %in% c("IL2RA+IL22+_ILC3", "CD16hi_NK", "CD16low_NK", "DC", "Endothelial", "HSPhi_ILC", "SELL+ID2hi_ILC", "Mast_cells", "Monocyte_Macrophages", "ILC3", "HLADRhi_ILC3", "IL2RA+CXCL8+_ILC", "Proliferating_cells", "Stromal", "pDC")]
 
 whole_da$celltypes <- droplevels(whole_da$celltypes)
 slice_da$celltypes <- droplevels(slice_da$celltypes)
@@ -74,7 +74,7 @@ significance_table <- diff_abundance1 %>%
 filtered_diff_abundance1 <- filtered_diff_abundance
 filtered_diff_abundance1$sample_type <- factor(filtered_diff_abundance1$sample_type, 
                                               levels = c("wCTRL", "sCTRL"))
-ggplot(filtered_diff_abundance1, aes(x = factor(cell_type, level = c("Stromal", "Endothelial", "CD16hi_NK", "CD16low_NK", "SELL+ID2hi_ILC", "ILC3", "HLADRhi_ILC3", "CD25+IL22+_ILC3", "CD25+CXCL8+_ILC", "HSPhi_ILC", "DC", "pDC", "Monocyte_Macrophages", "Neutrophil_Granulocytes", "Mast_cells", "Proliferating_cells")), 
+ggplot(filtered_diff_abundance1, aes(x = factor(cell_type, level = c("Stromal", "Endothelial", "CD16hi_NK", "CD16low_NK", "SELL+ID2hi_ILC", "ILC3", "HLADRhi_ILC3", "IL2RA+IL22+_ILC3", "IL2RA+CXCL8+_ILC", "HSPhi_ILC", "DC", "pDC", "Monocyte_Macrophages", "Neutrophil_Granulocytes", "Mast_cells", "Proliferating_cells")), 
                                     y = percentage_cells)) +
   geom_boxplot(aes(colour = sample_type, fill = sample_type), outlier.shape = NA) + 
   scale_color_manual(values = c("#000000", "#000000"))+
